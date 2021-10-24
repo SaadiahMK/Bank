@@ -7,7 +7,7 @@ name varchar(255),
 address varchar(255)
 );
 
-
+***/User Details ***/
 create table User_Details(
 user_id bigint(15) Primary Key,
 router_number bigint(10),
@@ -28,6 +28,7 @@ date_time datetime,
 FOREIGN KEY (router_number) REFERENCES Bank(router_number)
 );
 
+***/Login Details ***/
 create table Login_Details(
 user_id bigint(15),
 password varchar(255),
@@ -35,6 +36,7 @@ last_login_time_date datetime,
 foreign key(user_id) references user_details(user_id)
 );
 
+***/Accounts Details ***/
 create table Accounts_Details(
 account_number bigint(20) Primary Key,
 user_id bigint(15),
@@ -42,6 +44,7 @@ account_balance bigint(20),
 foreign key(user_id) references user_details(user_id)
 );
 
+***/Accounts Deposits ***/
 create table Accounts_Deposits(
 transaction_ref_id bigint(20) Primary Key,
 user_id bigint(15),
@@ -51,6 +54,7 @@ date_time datetime,
 foreign key(user_id) references user_details(user_id)
 );
 
+***/Accounts Withdrawals ***/
 create table Accounts_Withdrawals(
 transaction_ref_id bigint(20) Primary Key,
 user_id bigint(15),
@@ -59,6 +63,8 @@ amount bigint(20),
 date_time datetime,
 foreign key(user_id) references user_details(user_id)
 );
+
+***/Transfer Details ***/
 create table Transfer_Details(
 transaction_ref_id bigint(20) Primary Key,
 router_number bigint(10),
