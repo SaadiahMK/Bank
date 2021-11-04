@@ -2,13 +2,14 @@ package com.bank.models;
 
 import java.util.Date;
 
-public class AccountsDeposit {
-	
+public class TransactionDetails {
+		
 	private long transactionRefId;
 	private long userID;
 	private long accountBalance;
 	private long amount;
 	private Date dateTime;
+	private String transactionType;
 	
 	public long getTransactionRefID() {
 		return this.transactionRefId;
@@ -48,6 +49,14 @@ public class AccountsDeposit {
 	
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
+	}
+	
+	public String getTransactionType() {
+		return this.transactionType;
+	}
+	
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
 	}
 
 }

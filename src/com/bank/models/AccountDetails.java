@@ -1,6 +1,22 @@
 package com.bank.models;
 
-public class AccountDetails {
+import java.util.Date;
+
+public class AccountDetails extends TransactionDetails{
+	
+	public AccountDetails(long transactionRefId, long userID, 
+			long accountBalance, long amount, Date dateTime, 
+			String transactionType, long accountNumber) {
+		setTransactionRefID(transactionRefId);
+		this.userID = userID;
+		this.accountBalance = accountBalance;
+		setAmount(amount);
+		setDateTime(dateTime);
+		setTransactionType(transactionType);
+		this.accountNumber = accountNumber;
+		this.userID = userID;
+		this.accountBalance = accountBalance;
+	}
 	
 	private long accountNumber;
 	private long userID;

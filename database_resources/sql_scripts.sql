@@ -44,25 +44,17 @@ account_balance bigint(20),
 foreign key(user_id) references user_details(user_id)
 );
 
-***/Accounts Deposits ***/
+***/Transaction Details ***/
 create table Accounts_Deposits(
 transaction_ref_id bigint(20) Primary Key,
 user_id bigint(15),
 account_balance bigint(20),
 amount bigint(20),
 date_time datetime,
+Transaction_Type varchar(255),
 foreign key(user_id) references user_details(user_id)
 );
 
-***/Accounts Withdrawals ***/
-create table Accounts_Withdrawals(
-transaction_ref_id bigint(20) Primary Key,
-user_id bigint(15),
-account_balance bigint(20),
-amount bigint(20),
-date_time datetime,
-foreign key(user_id) references user_details(user_id)
-);
 
 ***/Transfer Details ***/
 create table Transfer_Details(

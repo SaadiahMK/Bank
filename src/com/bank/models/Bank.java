@@ -2,6 +2,12 @@ package com.bank.models;
 
 public class Bank {
 	
+	public Bank(String name, String address, long routerNumber) {
+		this.name = name;
+		this.address = address;
+		this.routerNumber = routerNumber;
+	}
+		
 	private String name;
 	private String address;
 	private long routerNumber;

@@ -4,7 +4,31 @@ import java.util.Date;
 
 public class UserDetails {
 	
-	private long userid;
+	public UserDetails(long userID, long routerNumber, String firstname, 
+			String lastname, String address, Date dateofbirth, long contact,
+			String accountType, long accountNumber, String email, String proofOfID,
+			long emergencyContact, String password, String userType, Date dateTime,
+			String status) {
+	
+			this.userID = userID;
+			this.routerNumber = routerNumber;
+			this.firstname = firstname;
+			this.lastname = lastname;
+			this.address = address;
+			this.dateofbirth = dateofbirth;
+			this.contact = contact;
+			this.accountType = accountType;
+			this.accountNumber = accountNumber;
+			this.email = email;
+			this.proofOfID = proofOfID;
+			this.emergencyContact = emergencyContact;
+			this.password = password;
+			this.userType = userType;
+			this.dateTime = dateTime;
+			this.status = status;
+	}
+	
+	private long userID;
 	private long routerNumber;
 	private String firstname;
 	private String lastname;
@@ -21,12 +45,12 @@ public class UserDetails {
 	private Date dateTime;
 	private String status;
 	
-	public long getUserId() {
-		return this.userid;
+	public long getUserID() {
+		return this.userID;
 	}
 	
-	public void setUserID(long userid) {
-		this.userid = userid;
+	public void setUserID(long userID) {
+		this.userID = userID;
 	}
 	
 	public long getRouterNumber() {

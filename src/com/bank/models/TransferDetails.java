@@ -4,6 +4,20 @@ import java.util.Date;
 
 public class TransferDetails {
 	
+	public TransferDetails(long transactionRefId, long routerNumner,
+			long fromAccount, long toAccount, long amount, String transferType,
+			Date dateTime) {
+		
+		this.transactionRefId = transactionRefId;
+		this.routerNumber = routerNumber;
+		this.fromAccount = fromAccount;
+		this.toAccount = toAccount;
+		this.amount = amount;
+		this.transferType = transferType;
+		this.dateTime = dateTime;
+		
+	}
+	
 	private long transactionRefId;
 	private long routerNumber;
 	private long fromAccount;

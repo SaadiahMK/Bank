@@ -4,6 +4,12 @@ import java.util.Date;
 
 public class LoginDetails {
 	
+	public void LoginDetails(long userID, String password, Date lastLoginTime) {
+		this.userID = userID;
+		this.password = password;
+		this.lastLoginTime = lastLoginTime;
+	}
+	
 	private long userID;
 	private String password;
 	private Date lastLoginTime;
