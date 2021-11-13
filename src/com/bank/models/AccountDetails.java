@@ -9,15 +9,17 @@ public class AccountDetails extends TransactionDetails{
 			String transactionType, long accountNumber) {
 		setTransactionRefID(transactionRefId);
 		this.userID = userID;
-		this.accountBalance = accountBalance;
 		setAmount(amount);
 		setDateTime(dateTime);
 		setTransactionType(transactionType);
 		this.accountNumber = accountNumber;
-		this.userID = userID;
 		this.accountBalance = accountBalance;
 	}
 	
+	public AccountDetails() {
+		
+	}
+
 	private long accountNumber;
 	private long userID;
 	private long accountBalance;

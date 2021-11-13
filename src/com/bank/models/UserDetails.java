@@ -2,7 +2,7 @@ package com.bank.models;
 
 import java.util.Date;
 
-public class UserDetails {
+public class UserDetails extends AccountDetails {
 	
 	public UserDetails(long userID, long routerNumber, String firstname, 
 			String lastname, String address, Date dateofbirth, long contact,
@@ -26,6 +26,10 @@ public class UserDetails {
 			this.userType = userType;
 			this.dateTime = dateTime;
 			this.status = status;
+	}
+	
+	public UserDetails() {
+		super();
 	}
 	
 	private long userID;
