@@ -1,32 +1,28 @@
 package com.bank.configuration;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import org.apache.log4j.Logger;
 
 public class DatabaseConnection {
 	
 	private static DatabaseConnection instance;
 	private static Connection con = null;
-	private String url = "jdbc:postgresql://localhost:5432/Bank";
+	private String url = "jdbc:postgresql://localhost:5432/bank";
 	private String username = "postgres";
-	private String password = "Admin";
+	private String password = "admin";
 	private static String registerDriver = "org.postgresql.Driver";
-	
+	private static final Logger logger = Logger.getLogger(DatabaseConnection.class);  
+
 	private DatabaseConnection() {
 		try {
 			Class.forName(registerDriver);
 			this.con = DriverManager.getConnection(url, username, password);
-			
-			DatabaseMetaData meta = con.getMetaData();
-			
-			System.out.println(meta.getDatabaseProductName());
-			
-			con.close();	
-			
 		} catch (Exception e) {
-			System.out.println(e);
+			logger.error("Error on creating database.");
+			logger.error(e);
 		}
 	}
 	
@@ -42,7 +38,8 @@ public class DatabaseConnection {
 				instance = new  DatabaseConnection();
 			}
 		} catch(Exception e) {
-			e.printStackTrace();
+			logger.error("Error on getting instance.");
+			logger.error(e);
 		}
 		return instance;
 	}
@@ -51,10 +48,11 @@ public class DatabaseConnection {
 	public static void main(String[] args) {
 		//To validate the connection.
 		try {
-			System.out.println(DatabaseConnection.getInstance().getConnection().getMetaData().getDatabaseProductName());
+			System.out.println(DatabaseConnection.getInstance().getConnection().getSchema());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Error on creating database.");
+			logger.error(e);
+		
 		}
 	}
 

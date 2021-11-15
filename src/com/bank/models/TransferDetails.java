@@ -18,6 +18,10 @@ public class TransferDetails {
 		
 	}
 	
+	public TransferDetails() {
+		
+	}
+	
 	private long transactionRefId;
 	private long routerNumber;
 	private long fromAccount;
@@ -25,7 +29,8 @@ public class TransferDetails {
 	private long amount;
 	private String transferType;
 	private Date dateTime;
-
+	
+	
 	public long getTransactionRefID() {
 		return this.transactionRefId;
 	}

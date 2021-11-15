@@ -77,7 +77,7 @@ public class UserDetails extends AccountDetails {
 		return this.lastname;
 	}
 	
-	public void setLasttName(String lastname) {
+	public void setLastName(String lastname) {
 		this.lastname = lastname;
 	}
 	
