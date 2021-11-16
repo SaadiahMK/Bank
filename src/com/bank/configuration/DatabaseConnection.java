@@ -10,9 +10,9 @@ public class DatabaseConnection {
 	
 	private static DatabaseConnection instance;
 	private static Connection con = null;
-	private String url = "jdbc:postgresql://localhost:5432/bank";
+	private String url = "jdbc:postgresql://localhost:5432/Bank";
 	private String username = "postgres";
-	private String password = "admin";
+	private String password = "Admin";
 	private static String registerDriver = "org.postgresql.Driver";
 	private static final Logger logger = Logger.getLogger(DatabaseConnection.class);  
 

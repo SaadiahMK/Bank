@@ -11,9 +11,7 @@ import java.util.Optional;
 import org.apache.log4j.Logger;
 
 import com.bank.configuration.DatabaseConnection;
-import com.bank.main.Execution;
 import com.bank.models.AccountDetails;
-import com.bank.models.LoginDetails;
 import com.bank.models.UserDetails;
 
 public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
@@ -40,6 +38,7 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 			 ac.setAccountNumber(userDetails.getAccountNumber());
 			 ac.setUserID(userDetails.getUserID());
 			 addAccountDetailsRecord(ac);
+			 logger.info("Created new user");
 			 closeStatementAndResultset();
 		} catch (Exception e) {
 			logger.error("Error on creating user.");
@@ -55,14 +54,15 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 			statement = connection.getConnection().createStatement();
 			 String sql = "UPDATE finance.user_details\r\n"
 			 		+ "	SET first_name='"+userDetails.getFirstName()+"', last_name='"+userDetails.getLastName()+"', "
-			 				+ "address='"+userDetails.getAddress()+"', date_of_birth="+userDetails.getDateOfBirth()+","
+			 				+ "address='"+userDetails.getAddress()+"', date_of_birth='"+userDetails.getDateOfBirth()+"',"
 			 						+ " contact="+userDetails.getContact()+", email='"+userDetails.getEmail()+"', "
-			 								+ "account_type='"+userDetails.getAccountType()+"', account_number="+userDetails.getAccountNumber()+","
+			 								+ "account_type='"+userDetails.getAccountType()+"',"
 			 										+ " proof_of_identification='"+userDetails.getProofOfID()+"', emergency_contact='"+userDetails.getEmergencyContact()+"',"
 			 												+ " password='"+userDetails.getPassword()+"' \r\n"
 			 								
 			 		+ "	WHERE user_details.user_id = "+userDetails.getUserID()+" ";
 			 statement.executeUpdate(sql);
+			 logger.info("Updated user details");
 			 closeStatementAndResultset();
 		} catch (Exception e) {
 			logger.error("Error on updating user details.");
@@ -76,19 +76,39 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 	@Override
 	public boolean delete(UserDetails userDetails) {
 		try {
+			 deleteAccountDetails(userDetails);
+			 
 			statement = connection.getConnection().createStatement();
 			 String sql = "DELETE FROM finance.user_details "	 								
 			 		+ "	WHERE user_details.user_id = "+userDetails.getUserID()+" ";
 			 statement.executeUpdate(sql);
+			 logger.info("Deleted user details");
 			 closeStatementAndResultset();
 		} catch (Exception e) {
 			logger.error("Error on deleting the user record.");
 			logger.error(e);
 			return false;
 		}
+		return true;
+	}
+	
+	private boolean deleteAccountDetails(UserDetails userDetails) {
+		try {
+			statement = connection.getConnection().createStatement();
+			 String sql = "DELETE FROM finance.accounts_details "	 								
+			 		+ "	WHERE accounts_details.user_id = "+userDetails.getUserID()+" ";
+			 statement.executeUpdate(sql);
+			 logger.info("Deleted account details");
+			 closeStatementAndResultset();
+		} catch (Exception e) {
+			logger.error("Error on deleting the deleteAccountDetails record.");
+			logger.error(e);
+			return false;
+		}
 		
 		return true;
 	}
+
 
 	@Override
 	public List<UserDetails> getAll() {
@@ -108,24 +128,31 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 	        	 userDetails.setLastName(resultSet.getString("last_name"));
 	        	 userDetails.setAddress(resultSet.getString("address"));
 	        	 userDetails.setDateOfBirth(resultSet.getDate("date_of_birth"));
-	        	 userDetails.setContact(resultSet.getInt("contact"));
+	        	 userDetails.setContact(resultSet.getLong("contact"));
 	        	 userDetails.setEmail(resultSet.getString("email"));
 	        	 userDetails.setAccountType(resultSet.getString("account_type"));
-	        	 userDetails.setAccountBalance(resultSet.getInt("contact"));
+	        	 userDetails.setAccountBalance(resultSet.getLong("account_balance"));
 	        	 userDetails.setProofOfID(resultSet.getString("proof_of_identification"));
-	        	 userDetails.setEmergencyContact(resultSet.getInt("emergency_contact"));
+	        	 userDetails.setEmergencyContact(resultSet.getLong("emergency_contact"));
 	        	 userDetails.setPassword(resultSet.getString("password"));
 	        	 userDetails.setStatus(resultSet.getString("status"));
-	        	 userDetails.setAccountNumber(resultSet.getInt("account_number"));
+	        	 userDetails.setAccountNumber(resultSet.getLong("account_number"));
 	        	 userDetails.setUserType(resultSet.getString("user_type"));
 	        	 userDetailsList.add(userDetails);
-				 closeStatementAndResultset();
 	         }
+			 closeStatementAndResultset();
 		} catch (Exception e) {
 			logger.error("Error on getting all the records.");
 			logger.error(e);
 			return null;
          }
+		
+		for(UserDetails ud:userDetailsList) {
+		
+			logger.info(" User Id: "+ ud.getUserID() + " User Account number: "+ud.getAccountNumber()+ " User account balance: "+ud.getAccountBalance());
+			
+			
+		}
          return userDetailsList;
 	}
 
@@ -192,6 +219,31 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 	}
 	
 	public static void main(String args[]) {
+		
+		UserOperationDAOImpl userImpl = new UserOperationDAOImpl();
+		UserDetails userDetails = new UserDetails();
+		userDetails.setUserID(10001);
+		userDetails.setRouterNumber(32000065);
+		userDetails.setFirstName("Paul");
+		userDetails.setLastName("Dsouza");
+		userDetails.setAddress("76-11 47th Ave Elmhurst NY 11373");
+		userDetails.setDateOfBirth(new Date("01/11/2000"));
+		userDetails.setContact(9293345560l);
+		userDetails.setEmail("paul_445@gmail.com");
+		userDetails.setAccountType("Saving Account");
+		userDetails.setAccountNumber(System.currentTimeMillis());
+		userDetails.setProofOfID("Telephone Bill");
+		userDetails.setEmergencyContact(9295330001l);
+		userDetails.setPassword("Pussy443?");
+		userDetails.setUserType("Client");
+		userDetails.setStatus("Inactive");
+				
+		//userImpl.save(userDetails);
+		//userImpl.delete(userDetails);
+		//userImpl.update(userDetails);
+		
+		userImpl.getAll();
+		
 		
 	}
 
