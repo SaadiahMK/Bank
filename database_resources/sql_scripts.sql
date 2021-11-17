@@ -45,17 +45,6 @@ account_balance bigint,
 foreign key(user_id) references finance.user_details(user_id)
 );
 
-/*** Transaction Details ***/
-create table finance.Transaction_Details(
-transaction_ref_id bigint Primary Key,
-user_id bigint,
-account_balance bigint,
-amount bigint,
-date_time timestamp,
-Transaction_Type varchar(255),
-foreign key(user_id) references finance.user_details(user_id)
-);
-
 /*** Transfer Details ***/
 create table finance.Transfer_Details(
 transaction_ref_id bigint Primary Key,
@@ -89,13 +78,6 @@ values('Ramesh', 'Joseph', '32 Anar Nagar Street Chennai 34000', '1990-02-04', 9
 ***/ Accounts Details insert Records ***/
 insert into finance.accounts_details(user_Id, Account_Number, Account_Balance)
 values(9993, 2209258890, 5003);
-
-/***Transaction Details insert Records ***/
-insert into finance.transaction_details(transaction_ref_id, user_id, account_balance, amount, date_time, Transaction_Type)
-values(0002344, 9993, (select account_balance from finance.accounts_details where user_id = 9993) -500, 500, now(), 'withdrawal');
-
-insert into finance.transaction_details(transaction_ref_id, user_id, account_balance, amount, date_time, Transaction_Type)
-values(0002355, 9993, (select account_balance from finance.accounts_details where user_id = 9993) +3000, 3000, now(), 'Deposit');
 
 /*** Account Details update ***/
 update finance.accounts_details

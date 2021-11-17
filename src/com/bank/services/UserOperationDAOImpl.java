@@ -36,7 +36,7 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 			 AccountDetails ac = new AccountDetails();
 			 ac.setAccountBalance(0);
 			 ac.setAccountNumber(userDetails.getAccountNumber());
-			 ac.setUserID(userDetails.getUserID());
+			 ac.setUserId(userDetails.getUserID());
 			 addAccountDetailsRecord(ac);
 			 logger.info("Created new user");
 			 closeStatementAndResultset();
@@ -199,7 +199,7 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 			statement = connection.getConnection().createStatement();
 			 String sql = "INSERT INTO finance.accounts_details (\r\n"
 			 		+ "	account_number, user_id, account_balance) \r\n"
-			 		+ "	VALUES ("+ac.getAccountNumber()+", "+ac.getUserID()+", "+ac.getAccountBalance()+") ";
+			 		+ "	VALUES ("+ac.getAccountNumber()+", "+ac.getUserId()+", "+ac.getAccountBalance()+") ";
 			 statement.executeUpdate(sql);
 			 closeStatementAndResultset();
 		} catch (Exception e) {
@@ -222,27 +222,28 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 		
 		UserOperationDAOImpl userImpl = new UserOperationDAOImpl();
 		UserDetails userDetails = new UserDetails();
-		userDetails.setUserID(10001);
+		userDetails.setUserID(1);
 		userDetails.setRouterNumber(32000065);
-		userDetails.setFirstName("Paul");
-		userDetails.setLastName("Dsouza");
+		userDetails.setFirstName("admin");
+		userDetails.setLastName("admin");
 		userDetails.setAddress("76-11 47th Ave Elmhurst NY 11373");
 		userDetails.setDateOfBirth(new Date("01/11/2000"));
 		userDetails.setContact(9293345560l);
-		userDetails.setEmail("paul_445@gmail.com");
-		userDetails.setAccountType("Saving Account");
+		userDetails.setEmail("admin@gmail.com");
+		userDetails.setAccountType("Admin");
 		userDetails.setAccountNumber(System.currentTimeMillis());
+		//userDetails.setAccountNumber(0);
 		userDetails.setProofOfID("Telephone Bill");
 		userDetails.setEmergencyContact(9295330001l);
-		userDetails.setPassword("Pussy443?");
-		userDetails.setUserType("Client");
-		userDetails.setStatus("Inactive");
+		userDetails.setPassword("admin");
+		userDetails.setUserType("Admin");
+		userDetails.setStatus("Active");
 				
-		//userImpl.save(userDetails);
+		userImpl.save(userDetails);
 		//userImpl.delete(userDetails);
 		//userImpl.update(userDetails);
 		
-		userImpl.getAll();
+		//userImpl.getAll();
 		
 		
 	}

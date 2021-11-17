@@ -2,16 +2,15 @@ package com.bank.models;
 
 import java.util.Date;
 
-public class AccountDetails extends TransactionDetails{
+public class AccountDetails extends TransferDetails{
 	
 	public AccountDetails(long transactionRefId, long userID, 
 			long accountBalance, long amount, Date dateTime, 
 			String transactionType, long accountNumber) {
 		setTransactionRefID(transactionRefId);
-		this.userID = userID;
 		setAmount(amount);
 		setDateTime(dateTime);
-		setTransactionType(transactionType);
+		setTransferType(transactionType);
 		this.accountNumber = accountNumber;
 		this.accountBalance = accountBalance;
 	}
@@ -21,7 +20,6 @@ public class AccountDetails extends TransactionDetails{
 	}
 
 	private long accountNumber;
-	private long userID;
 	private long accountBalance;
 	
 	public long getAccountNumber() {
@@ -30,14 +28,6 @@ public class AccountDetails extends TransactionDetails{
 	
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
-	}
-	
-	public long getUserID() {
-		return this.userID;
-	}
-	
-	public void setUserID(long userID) {
-		this.userID = userID;
 	}
 	
 	public long getAccountBalance() {

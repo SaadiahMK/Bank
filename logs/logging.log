@@ -1,0 +1,100 @@
+2021-11-15 19:21:49 ERROR DatabaseConnection:24 - Error on creating database.
+  2021-11-15 19:21:49 ERROR DatabaseConnection:25 - org.postgresql.util.PSQLException: FATAL: password authentication failed for user "postgres"
+  2021-11-15 19:21:49 ERROR UserOperationDAOImpl:45 - Error on creating user.
+  2021-11-15 19:21:49 ERROR UserOperationDAOImpl:46 - java.lang.NullPointerException
+  2021-11-15 19:23:06 ERROR DatabaseConnection:24 - Error on creating database.
+  2021-11-15 19:23:06 ERROR DatabaseConnection:25 - org.postgresql.util.PSQLException: FATAL: database "bank" does not exist
+  2021-11-15 19:23:06 ERROR UserOperationDAOImpl:45 - Error on creating user.
+  2021-11-15 19:23:06 ERROR UserOperationDAOImpl:46 - java.lang.NullPointerException
+  2021-11-15 19:24:29 ERROR UserOperationDAOImpl:45 - Error on creating user.
+  2021-11-15 19:24:29 ERROR UserOperationDAOImpl:46 - org.postgresql.util.PSQLException: ERROR: insert or update on table "user_details" violates foreign key constraint "user_details_router_number_fkey"
+  Detail: Key (router_number)=(6815797) is not present in table "bank".
+  2021-11-15 19:39:02 ERROR UserOperationDAOImpl:45 - Error on creating user.
+  2021-11-15 19:39:02 ERROR UserOperationDAOImpl:46 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_details_pkey"
+  Detail: Key (user_id)=(10001) already exists.
+  2021-11-15 19:39:02 ERROR UserOperationDAOImpl:68 - Error on updating user details.
+  2021-11-15 19:39:02 ERROR UserOperationDAOImpl:69 - org.postgresql.util.PSQLException: ERROR: syntax error at or near "Feb"
+  Position: 136
+  2021-11-15 19:41:07 ERROR UserOperationDAOImpl:68 - Error on updating user details.
+  2021-11-15 19:41:07 ERROR UserOperationDAOImpl:69 - org.postgresql.util.PSQLException: ERROR: syntax error at or near "Feb"
+  Position: 136
+  2021-11-15 19:43:31 ERROR UserOperationDAOImpl:68 - Error on updating user details.
+  2021-11-15 19:43:31 ERROR UserOperationDAOImpl:69 - org.postgresql.util.PSQLException: ERROR: syntax error at or near "Jan"
+  Position: 136
+  2021-11-15 19:51:10 ERROR UserOperationDAOImpl:85 - Error on deleting the user record.
+  2021-11-15 19:51:10 ERROR UserOperationDAOImpl:86 - org.postgresql.util.PSQLException: ERROR: update or delete on table "user_details" violates foreign key constraint "accounts_details_user_id_fkey" on table "accounts_details"
+  Detail: Key (user_id)=(10001) is still referenced from table "accounts_details".
+  2021-11-15 20:05:03 INFO  UserOperationDAOImpl:101 - Deleted account details
+  2021-11-15 20:05:03 INFO  UserOperationDAOImpl:85 - Deleted user details
+  2021-11-15 20:06:14 INFO  UserOperationDAOImpl:41 - Created new user
+  2021-11-15 20:23:16 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:23:16 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: Bad value for type int : 9669830054
+  2021-11-15 20:26:05 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:26:05 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: Bad value for type int : 9669830054
+  2021-11-15 20:26:59 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:26:59 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: Bad value for type int : 9669830054
+  2021-11-15 20:29:47 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:29:47 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: Bad value for type int : 9669830054
+  2021-11-15 20:31:40 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:31:40 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: Bad value for type int : 2209258890
+  2021-11-15 20:32:34 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:32:34 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: The column name amount was not found in this ResultSet.
+  2021-11-15 20:32:58 ERROR UserOperationDAOImpl:145 - Error on getting all the records.
+  2021-11-15 20:32:58 ERROR UserOperationDAOImpl:146 - org.postgresql.util.PSQLException: This ResultSet is closed.
+  2021-11-15 20:33:31 INFO  UserOperationDAOImpl:241 -  9993
+  2021-11-15 20:33:31 INFO  UserOperationDAOImpl:241 -  1001
+  2021-11-15 20:33:31 INFO  UserOperationDAOImpl:241 -  10001
+  2021-11-15 20:36:16 INFO  UserOperationDAOImpl:152 -  User Id: 9993 User Account number: 2209258890 User account balance: 7753
+  2021-11-15 20:36:16 INFO  UserOperationDAOImpl:152 -  User Id: 1001 User Account number: 2022004860 User account balance: 5000
+  2021-11-15 20:36:16 INFO  UserOperationDAOImpl:152 -  User Id: 10001 User Account number: 1637024773964 User account balance: 0
+  2021-11-16 18:42:18 ERROR TransferDetailsDAOImpl:118 - Error on updating user details.
+  2021-11-16 18:42:18 ERROR TransferDetailsDAOImpl:119 - org.postgresql.util.PSQLException: ERROR: column "router_number" of relation "transaction_details" does not exist
+  Position: 63
+  2021-11-16 18:50:54 ERROR TransferDetailsDAOImpl:118 - Error on updating user details.
+  2021-11-16 18:50:54 ERROR TransferDetailsDAOImpl:119 - org.postgresql.util.PSQLException: ERROR: column "router_number" of relation "transaction_details" does not exist
+  Position: 63
+  2021-11-16 18:55:36 ERROR TransferDetailsDAOImpl:118 - Error on updating user details.
+  2021-11-16 18:55:36 ERROR TransferDetailsDAOImpl:119 - org.postgresql.util.PSQLException: ERROR: column "router_number" of relation "transaction_details" does not exist
+  Position: 63
+  2021-11-16 19:22:33 ERROR UserOperationDAOImpl:44 - Error on creating user.
+  2021-11-16 19:22:33 ERROR UserOperationDAOImpl:45 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "user_details_pkey"
+  Detail: Key (user_id)=(10001) already exists.
+  2021-11-16 19:23:02 INFO  UserOperationDAOImpl:41 - Created new user
+  2021-11-16 19:27:24 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:27:24 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: syntax error at end of input
+  Position: 311
+  2021-11-16 19:28:30 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:28:30 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: relation "finance.transaction_details" does not exist
+  Position: 13
+  2021-11-16 19:29:34 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:29:34 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: INSERT has more target columns than expressions
+  Position: 144
+  2021-11-16 19:32:24 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:32:24 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: insert or update on table "transfer_details" violates foreign key constraint "transfer_details_from_account_fkey"
+  Detail: Key (from_account)=(2022004860) is not present in table "accounts_details".
+  2021-11-16 19:35:02 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:35:02 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: more than one row returned by a subquery used as an expression
+  2021-11-16 19:45:22 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 19:45:22 ERROR TransferDetailsDAOImpl:190 - Error on adding account details.
+  2021-11-16 19:45:22 ERROR TransferDetailsDAOImpl:191 - org.postgresql.util.PSQLException: ERROR: relation "finance.transaction_details" does not exist
+  Position: 84
+  2021-11-16 19:47:45 ERROR TransferDetailsDAOImpl:133 - Error on inserting transaction details.
+  2021-11-16 19:47:45 ERROR TransferDetailsDAOImpl:134 - org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "transfer_details_pkey"
+  Detail: Key (transaction_ref_id)=(101) already exists.
+  2021-11-16 19:48:48 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 19:48:48 INFO  TransferDetailsDAOImpl:187 - Updated Account balance for the user 1001
+  2021-11-16 19:50:40 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 19:50:40 INFO  TransferDetailsDAOImpl:187 - Updated Account balance for the user 1001
+  2021-11-16 19:52:51 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 19:52:51 INFO  TransferDetailsDAOImpl:187 - Updated Account balance for the user 1001
+  2021-11-16 20:34:55 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 20:34:55 INFO  TransferDetailsDAOImpl:197 - Updated Account balance for the user 0
+  2021-11-16 20:39:19 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 20:39:19 INFO  TransferDetailsDAOImpl:197 - Updated Account balance for the user 0
+  2021-11-16 20:39:19 INFO  TransferDetailsDAOImpl:197 - Updated Account balance for the user 0
+  2021-11-16 20:47:20 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 20:47:20 INFO  TransferDetailsDAOImpl:197 - Updated Account balance
+  2021-11-16 20:47:20 INFO  TransferDetailsDAOImpl:197 - Updated Account balance
+  2021-11-16 21:00:37 INFO  TransferDetailsDAOImpl:127 - Transaction updated successfully.
+  2021-11-16 21:00:37 INFO  TransferDetailsDAOImpl:187 - Updated Account balance for the user 1001
+  

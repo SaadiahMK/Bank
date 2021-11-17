@@ -4,6 +4,14 @@ import java.util.Date;
 
 public class TransferDetails {
 	
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	public TransferDetails(long transactionRefId, long routerNumner,
 			long fromAccount, long toAccount, long amount, String transferType,
 			Date dateTime) {
@@ -29,7 +37,7 @@ public class TransferDetails {
 	private long amount;
 	private String transferType;
 	private Date dateTime;
-	
+	private long userId;
 	
 	public long getTransactionRefID() {
 		return this.transactionRefId;
