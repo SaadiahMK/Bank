@@ -296,13 +296,13 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 	public static void main(String a[]) {
 		TransferDetailsDAOImpl tdImpl = new TransferDetailsDAOImpl();
 		TransferDetails transferdetails = new TransferDetails();
-		transferdetails.setTransactionRefID(5);
-		transferdetails.setRouterNumber(32000065);
-		transferdetails.setFromAccount(1637203343962l);
-		transferdetails.setToAccount(1637207989963l);
-		transferdetails.setAmount(1000);
+		transferdetails.setTransactionRefID(111);
+		transferdetails.setRouterNumber(453297450);
+		transferdetails.setFromAccount(1637258522639l);
+		transferdetails.setToAccount(1637258897971l);
+		transferdetails.setAmount(400);
 		transferdetails.setTransferType("transfer");
-		transferdetails.setUserId(101);
+		transferdetails.setUserId(2233);
 		tdImpl.save(transferdetails);
 		//tdImpl.update(transferdetails);
 		

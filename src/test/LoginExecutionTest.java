@@ -42,21 +42,21 @@ public class LoginExecutionTest {
     public void testUserCreation() {
     	UserOperationDAOImpl userImpl = new UserOperationDAOImpl();
 		UserDetails userDetails = new UserDetails();
-		userDetails.setUserID(106);
-		userDetails.setRouterNumber(32000065);
-		userDetails.setFirstName("veera");
-		userDetails.setLastName("veera");
-		userDetails.setAddress("76-11 47th Ave Elmhurst NY 11373");
-		userDetails.setDateOfBirth(new Date("01/11/2000"));
-		userDetails.setContact(9293345560l);
-		userDetails.setEmail("admin@gmail.com");
-		userDetails.setAccountType("Admin");
+		userDetails.setUserID(2026);
+		userDetails.setRouterNumber(453297450);
+		userDetails.setFirstName("Cynthia");
+		userDetails.setLastName("William");
+		userDetails.setAddress("83-23 45th Ave East Elmhurst NY 11373");
+		userDetails.setDateOfBirth(new Date("03/11/2003"));
+		userDetails.setContact(9290002233l);
+		userDetails.setEmail("cynthia44@gmail.com");
+		userDetails.setAccountType("Client");
 		userDetails.setAccountNumber(System.currentTimeMillis());
 		//userDetails.setAccountNumber(0);
-		userDetails.setProofOfID("Telephone Bill");
-		userDetails.setEmergencyContact(9295330001l);
-		userDetails.setPassword("veera");
-		userDetails.setUserType("Admin");
+		userDetails.setProofOfID("Passpost");
+		userDetails.setEmergencyContact(9290224444l);
+		userDetails.setPassword("Rest01");
+		userDetails.setUserType("Client");
 		userDetails.setStatus("Active");
 				
 		assertEquals(true, userImpl.save(userDetails));
@@ -64,13 +64,13 @@ public class LoginExecutionTest {
     
     public void testDepositTransaction() {
     	TransferDetails transferdetails = new TransferDetails();
-		transferdetails.setTransactionRefID(3);
-		transferdetails.setRouterNumber(32000065);
-		transferdetails.setFromAccount(0);
-		transferdetails.setToAccount(0);
-		transferdetails.setAmount(4000);
-		transferdetails.setTransferType("deposit");
-		transferdetails.setUserId(1);
+		transferdetails.setTransactionRefID(111);
+		transferdetails.setRouterNumber(453297450);
+		transferdetails.setFromAccount(1637258522639l);
+		transferdetails.setToAccount(1637258897971l);
+		transferdetails.setAmount(400);
+		transferdetails.setTransferType("transfer");
+		transferdetails.setUserId(2233);
 		TransferDetailsDAOImpl tdImpl = new TransferDetailsDAOImpl();
 		assertEquals(true, tdImpl.save(transferdetails));
 
