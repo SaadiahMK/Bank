@@ -222,7 +222,7 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 		
 		UserOperationDAOImpl userImpl = new UserOperationDAOImpl();
 		UserDetails userDetails = new UserDetails();
-		userDetails.setUserID(1);
+		userDetails.setUserID(101);
 		userDetails.setRouterNumber(32000065);
 		userDetails.setFirstName("admin");
 		userDetails.setLastName("admin");
@@ -239,11 +239,11 @@ public class UserOperationDAOImpl implements OperationsDAO<UserDetails> {
 		userDetails.setUserType("Admin");
 		userDetails.setStatus("Active");
 				
-		userImpl.save(userDetails);
+		//userImpl.save(userDetails);
 		//userImpl.delete(userDetails);
 		//userImpl.update(userDetails);
 		
-		//userImpl.getAll();
+		userImpl.getAll();
 		
 		
 	}

@@ -80,9 +80,7 @@ public class Execution extends ExecutionService {
 		}
 		
 		exe.startOperations(menuId);
-		
-		
-			
+					
 		
 	}
 		

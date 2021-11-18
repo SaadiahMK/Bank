@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.apache.log4j.Logger;
 import com.bank.configuration.DatabaseConnection;
 import com.bank.models.AccountDetails;
+import com.bank.models.Bank;
 import com.bank.models.TransferDetails;
 
 public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
@@ -114,6 +115,36 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 			 				+ ""+td.getRouterNumber()+", "+td.getFromAccount()+", "+td.getToAccount()+", "
 			 						+ " '"+td.getTransferType()+"', now(), "+td.getUserId()+", "
 			 								+ " ((select account_balance from finance.accounts_details where user_id = "+td.getUserId()+") - "+td.getAmount()+"),  "+td.getAmount()+" ) ";
+			 } else if (td.getTransferType().equals("transfer")) {
+				 sql = "INSERT INTO finance.transfer_details ("
+					 		+ "	transaction_ref_id, router_number, from_account, to_account, transfer_type, date_time, user_id, account_balance, amount) "
+					 		+ "	VALUES ("+td.getTransactionRefID()+", "
+					 				+ ""+td.getRouterNumber()+", "+td.getFromAccount()+", "+td.getToAccount()+", "
+					 						+ " 'Withdrowal', now(), "+td.getUserId()+", "
+					 								+ " ((select account_balance from finance.accounts_details where user_id = "+td.getUserId()+") - "+td.getAmount()+"),  "+td.getAmount()+" ) ";
+ 
+				 statement.executeUpdate(sql);
+				 logger.info("Transaction updated successfully.");
+				 AccountDetails ac = new AccountDetails();
+				 ac.setUserId(td.getUserId());
+				 updateAccountBalance(ac);
+				 
+				 td.setTransactionRefID(td.getTransactionRefID()+1);
+				 
+				 sql = "INSERT INTO finance.transfer_details ("
+					 		+ "	transaction_ref_id, router_number, from_account, to_account, transfer_type, date_time, user_id, account_balance, amount) "
+					 		+ "	VALUES ("+td.getTransactionRefID()+", "
+					 				+ ""+td.getRouterNumber()+", "+td.getToAccount()+", "+td.getFromAccount()+", "
+					 						+ " 'deposit', now(), (SELECT  user_id	FROM finance.accounts_details where account_number = "+td.getToAccount()+"), "
+					 								+ " ((select account_balance from finance.accounts_details where user_id = (SELECT  user_id	FROM finance.accounts_details where account_number = "+td.getToAccount()+")) + "+td.getAmount()+"),  "+td.getAmount()+" ) ";
+
+				 statement.executeUpdate(sql);
+				 logger.info("Transaction updated successfully.");
+				 AccountDetails ac1 = new AccountDetails();
+				 ac1.setUserId(td.getUserId());
+				 updateAccountBalance(ac1);
+				 closeStatementAndResultset();
+				 return true;
 			 } else {
 				 sql = "INSERT INTO finance.transfer_details ("
 					 		+ "	transaction_ref_id, router_number, from_account, to_account, transfer_type, date_time, user_id, account_balance,amount) "
@@ -185,7 +216,6 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 			 		+ "where user_id = "+ac.getUserId()+" ";
 			 statement.executeUpdate(sql);
 			 logger.info("Updated Account balance for the user "+ac.getUserId());
-			 closeStatementAndResultset();
 		} catch (Exception e) {
 			logger.error("Error on adding account details.");
 			logger.error(e);
@@ -216,23 +246,24 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 				 closeStatementAndResultset();
 				 return transferDetailsList;
 	         }
+	         logger.info("transferDetailsList - " +transferDetailsList.size());
 		} catch (Exception e) {
 			logger.error("Error on getAll records.");
 			logger.error(e);
          }
-         return null;
+         return transferDetailsList;
 	}
 
 	@Override
 	public Optional<TransferDetails> getRecord(long userId) {
-
+		TransferDetails transferDetails = null;
 		try {
 			 statement = connection.getConnection().createStatement();
 	         resultSet = statement.executeQuery( "SELECT transaction_ref_id, router_number, from_account,"
 	         		+ " to_account, amount, transfer_type, date_time, user_id "
 	         		+ "	FROM finance.transfer_details" );
 	         while ( resultSet.next() ) {
-	        	 TransferDetails transferDetails = new TransferDetails();
+	        	 transferDetails = new TransferDetails();
 
 	        	 transferDetails.setTransactionRefID(resultSet.getInt("transaction_ref_id"));
 	        	 transferDetails.setRouterNumber(resultSet.getInt("router_number"));
@@ -249,10 +280,11 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 			logger.error("Error on getAll records.");
 			logger.error(e);
          }
-         return null;
+         return Optional.of(transferDetails);
 	
 		
 	}
+	
 	
 	private void closeStatementAndResultset() throws SQLException {
 		if(statement != null && !statement.isClosed())
@@ -264,15 +296,17 @@ public class TransferDetailsDAOImpl implements OperationsDAO<TransferDetails> {
 	public static void main(String a[]) {
 		TransferDetailsDAOImpl tdImpl = new TransferDetailsDAOImpl();
 		TransferDetails transferdetails = new TransferDetails();
-		transferdetails.setTransactionRefID(104);
-		transferdetails.setRouterNumber(22000097);
-		transferdetails.setFromAccount(2022004860);
-		transferdetails.setToAccount(0);
-		transferdetails.setAmount(500);
-		transferdetails.setTransferType("Withdrawal");
-		transferdetails.setUserId(1001);
+		transferdetails.setTransactionRefID(5);
+		transferdetails.setRouterNumber(32000065);
+		transferdetails.setFromAccount(1637203343962l);
+		transferdetails.setToAccount(1637207989963l);
+		transferdetails.setAmount(1000);
+		transferdetails.setTransferType("transfer");
+		transferdetails.setUserId(101);
 		tdImpl.save(transferdetails);
 		//tdImpl.update(transferdetails);
+		
+		//tdImpl.getAll();
 		
 	}
 
